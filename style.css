@@ -1,0 +1,24 @@
+.container {
+    display: grid;
+    height: 500px;
+    width: 500px;
+    margin: 2rem auto;
+    background-color: white;
+    grid-template-columns: repeat(16, 1fr);
+    justify-content: center;
+    
+    
+}
+
+.container > div {
+    background-color: white;
+    border: 1px solid black;
+    width: 10px;
+    height: 10px;
+    padding: 10px;
+}
+
+#header {
+    display: flex;
+    justify-content: center;
+}
