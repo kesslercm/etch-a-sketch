@@ -1,15 +1,26 @@
 const container = document.getElementById("container");
-const clear = document.getElementById('clear');
+const clear = document.getElementById("clear");
 
-//Creates a 16x16 grid
-for (x=0; x<256; x++){
+window.addEventListener("load", defaultGridLayout);
+
+function defaultGridLayout(){
+    createGrid(16);
+    fillGrid(16);
+}
+
+function createGrid(size){
+    container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+}
+
+function fillGrid(size){
+for (x=0; x<size * size; x++){
     var newDiv = document.createElement('div');
     newDiv.className = "newDiv";
     newDiv.setAttribute("id", "newDiv");
     document.getElementById('container').appendChild(newDiv);
 }
+}
 
-//Colors grid black on mouse over
 const gridDiv = document.querySelector('div');
 
 function bgChange(event) {
@@ -17,12 +28,23 @@ function bgChange(event) {
 }
 gridDiv.addEventListener('mouseover', bgChange);
 
-//Clear button - clears grid and prompts user to input new grid size
-function clearGrid() {
-    var elements = document.getElementsByClassName('newDiv');
-    for(var i = 0; i < elements.length; i++){
-        elements[i].style.backgroundColor = 'white';
+clear.addEventListener('click', userGridSize);
+
+function userGridSize(){
+    let userSize = prompt("Enter a grid size from 1-64");
+    if (userSize < 1 || userSize > 64) {
+        alert ("Please enter a number between 1 and 64")
+        userGridSize();
+    }else {
+        clearGrid();
+        createGrid(userSize);
+        fillGrid(userSize);
     }
-    prompt('Enter new grid size(Limit 100)');
 }
-clear.addEventListener('click', clearGrid);
+
+function clearGrid() {
+    const gridArray = Array.from(container.childNodes);
+    gridArray.forEach((element) => {
+        container.removeChild(element);
+    });
+}
