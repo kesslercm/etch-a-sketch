@@ -1,3 +1,18 @@
+body {
+    background-color: lightslategray;
+}
+
+#header {
+    font-style: italic;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 2em;
+    margin-top: 4rem;
+    display: flex;
+    justify-content: center;
+    color: maroon;
+    font-weight: bold;
+}
+
 .container {
     display: grid;
     min-height: 500px;
@@ -12,12 +27,27 @@
     border: 1px solid black;
 }
 
-#header {
-    display: flex;
-    justify-content: center;
-}
-
 .clearButton {
     text-align: center;
+}
+
+.clear {
+    border-color: red;
+    font-size: .5em;
+    cursor: pointer;
+    box-shadow: 0 6px #999;
+    border-radius: 10px;
+    padding: 10px 20px;
+    outline: none;
+}
+
+.clear:active{
+    transform: translateY(3px);
+    background-color: lightgray;
+    box-shadow: 0 2px #999;
+}
+
+.clear:hover{
+    background-color: lightgray;
 }
 
